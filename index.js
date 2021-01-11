@@ -23,7 +23,6 @@ function game(e){
  
    
     if(e.target.textContent === ''){
-        console.log("빈칸");
         count++
         e.target.textContent = turn;
          //가로줄
@@ -69,11 +68,22 @@ function game(e){
                 console.log("gameover");
                 setTimeout(gameEnd,1000)
                 }
-            if(turn === "X"){
-           
+            if(turn === "X"){           
                 turn = "O"
-            }else{
+                var blocks2 = [];
+                blocks.forEach(function(line){
+                    line.forEach(function(block){
+                        blocks2.push(block);
+                    })
+                })
+                
+                blocks2 = blocks2.filter(function(block){return !block.textContent});
+                var select = blocks2[Math.floor(Math.random()*blocks2.length)];
+                select.textContent = turn;
                 turn = "X";
+                
+/*             }else{
+                turn = "X"; */
 
         }
         
